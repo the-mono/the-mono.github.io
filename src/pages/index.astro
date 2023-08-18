@@ -1,0 +1,37 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Sidebar from '../components/Sidebar.astro';
+import PageHeader from '../components/PageHeader.astro';
+---
+
+<Layout title="the mono">
+	<Sidebar homeActive="active"/>
+	<div class="page-wrapper" style="font-size:1.1rem">
+		<PageHeader title="Homepage"/>
+		<div class="page-body" style="padding: 1rem 3rem">
+			<div class="row align-items-center">
+				<div class="col-7">
+					<h1 style="font-size:2rem">Share & Spark!</h1>
+					<h3 style="font-weight:400">The Mono is a everything platform for posting a piece of text, video, picture and more..</h3>
+				</div>
+				<div class="col">
+					<div class="row align-items-center">
+						<i class="col-4">Post something: </i>
+						<div class="col btn-list">
+							<button class="btn btn-primary btn-icon" aria-label="Text">
+								<i class="ti ti-pencil"></i>
+							</button>
+							<button class="btn btn-success btn-icon" aria-label="Video / Picture">
+								<i class="ti ti-camera"></i>
+							</button>
+							<button class="btn btn-danger btn-icon" aria-label="Link">
+								<i class="ti ti-link"></i>
+							</button>
+						</div>
+					</div>
+				  
+				</div>
+			  </div>
+		</div>
+	</div>	  
+</Layout>

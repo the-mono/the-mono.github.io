@@ -1,0 +1,126 @@
+--- 
+interface Props {
+	homeActive?: string;
+	exploreActive?: string;
+	notificationsActive?: string;
+	messagesActive?: string;
+	profileActive?: string;
+	settingsActive?: string;
+}
+
+const {
+	homeActive = "",
+	exploreActive = "",
+	notificationsActive = "",
+	messagesActive = "",
+	profileActive = "",
+	settingsActive: string,
+} = Astro.props;
+---
+
+<aside class="navbar navbar-vertical navbar-expand-sm navbar-dark" style="padding:0;overflow:hidden;">
+	<div class="container-fluid">
+	  <button class="navbar-toggler" type="button">
+		<span class="navbar-toggler-icon"></span>
+	  </button>
+	  <h1 class="navbar-brand navbar-brand-autodark" style="font-size:3rem;transform:rotateZ(90deg);position:absolute;left:-5.1rem;bottom:90px;color:var(--tblr-body-bg)">
+		<a href="/">
+		  the mono
+		</a>
+	  </h1>
+	  <div class="collapse navbar-collapse" id="sidebar-menu" style="font-size: 1.5rem;padding-left: 10px;">
+		<ul class="navbar-nav pt-lg-3">
+		  <li class="nav-item mb-3">
+			<div class="input-icon" style="margin-left: 5px;">
+				<span class="input-icon-addon">
+					<svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="var(--tblr-body-bg)" fill="none" stroke-linecap="round" stroke-linejoin="round">
+					  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+					  <circle cx="10" cy="10" r="7" />
+					  <line x1="21" y1="21" x2="15" y2="15" />
+					</svg>
+				</span>
+				<input type="text" id="searchInput" class="form-control" placeholder="search.." />
+			  </div>
+		  </li>
+		  <li class="nav-item">
+			<a class={"nav-link " + homeActive} href="/">
+			  <span class="nav-link-title">
+				<i class="ti ti-home"></i><span>homepage</span>
+			  </span>
+			</a>
+		  </li>
+		  <li class="nav-item">
+			<a class={"nav-link " + exploreActive} href="/explore">
+			  <span class="nav-link-title">
+				<i class="ti ti-compass"></i><span>explore</span>
+			  </span>
+			</a>
+		  </li>
+		  <li class="nav-item">
+			<a class={"nav-link " + notificationsActive} href="/notifications">
+			  <span class="nav-link-title">
+				<i class="ti ti-bell"></i><span>notifications</span>
+			  </span>
+			</a>
+		  </li>
+		  <li class="nav-item">
+			<a class={"nav-link " + messagesActive} href="/messages">
+			  <span class="nav-link-title">
+				<i class="ti ti-message-circle"></i><span>messages</span>
+			  </span>
+			</a>
+		  </li>
+		  <li class="nav-item">
+			<a class={"nav-link " + profileActive} href="/profile">
+			  <span class="nav-link-title">
+				<i class="ti ti-user-circle"></i><span>profile</span>
+			  </span>
+			</a>
+		  </li>
+		  <li class="nav-item">
+			<a class={"nav-link " + profileActive} href="/settings">
+			  <span class="nav-link-title">
+				<i class="ti ti-settings"></i><span>settings</span>
+			  </span>
+			</a>
+		  </li>
+		</ul>
+	  </div>
+	</div>
+  </aside>
+
+  <style>
+
+	aside {
+		position: fixed !important;
+		box-shadow: 10px 0 40px 4px rgb(0 0 0 / 35%) !important;
+	}
+
+	aside:not(:hover) {
+		width: 65px !important;
+		overflow: hidden;
+		transition: 0.2s all !important;
+	}
+
+	aside:hover {
+		width: 250px !important;
+		transition: 0.2s all !important;
+	}
+
+	aside:not(:hover) a.nav-link span > span {
+		opacity: 0;
+		transition: 0.2s all;
+	}
+
+	aside a.nav-link span > span {
+		padding-left: 5px;
+	}
+
+	input#searchInput {
+		background: rgb(255 255 255 / 15%);
+		border: 1px solid rgb(255 255 255 / 5%);
+		width: 100%;
+		border-top-right-radius: 0;
+		border-bottom-right-radius: 0;
+	}
+  </style>
