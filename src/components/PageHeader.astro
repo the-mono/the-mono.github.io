@@ -2,13 +2,13 @@
 
 interface Props {
 	title: string;
-    login?: boolean;
-    signup?: boolean;
 }
 
-const { title, login, signup } = Astro.props;
+const { title } = Astro.props;
 
 ---
+
+<div class="darker"></div>
 
 <div class="page-header" style="width: calc(100% - 30px);margin-left:20px;">
     <div class="row align-items-center">
@@ -21,18 +21,162 @@ const { title, login, signup } = Astro.props;
         </h2>
       </div>
       <div class="col-auto ms-auto">
-        <div class="btn-list" style="gap:0;border-radius:20px;overflow:hidden;">
-          <a href="/login" class={
-            login ? "btn btn-primary" : "btn btn-outline-primary"
-          }  style="border-radius:0;border-top-left-radius: 20px;border-bottom-left-radius: 20px;;">
-            log in
-          </a>
-          <a href="/signup" class={
-            signup ? "btn btn-secondary" : "btn btn-outline-secondary"
-          } style="border-radius:0;border-top-right-radius: 20px;border-bottom-right-radius: 20px;;">
-            sign up
-          </a>
+        <div class="btn-list" style="gap:0;border-radius:20px;">
+          <div class="popup-container">
+            <div id="pLogin" class="popup">
+              <h1>Welcome back!</h1>
+              <p>Login and back to share & spark.</p>
+              <form id="LOGINform" class="form-fieldset">
+                <div class="mb-3">
+                  <label class="form-label required">E-mail</label>
+                  <input type="email" class="form-control" id="LOGINemail" name="LOGINemail" placeholder="mail@service.me" autocomplete="on"/>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label required">Password</label>
+                  <input type="password" class="form-control" id="LOGINpassword" name="LOGINpassword" placeholder="Make sure it is safe!" autocomplete="on"/>
+                </div>
+                <div class="mb-3">
+                  <input type="submit" value="Welcome Back!" name="LOGINsubmit" id="LOGINsubmit" class="btn btn-dark" style="width: 100%;">
+                </div>
+              </form>
+
+              <div class="ribbon ribbon-top ribbon-end ribbon-bookmark">
+                <i class="ti ti-login"></i>
+              </div>
+            </div>
+            
+            <button onclick="triggerPopup('pLogin');" class="btn btn-outline-dark pLogin" style="border-radius:0;border-top-left-radius: 20px;border-bottom-left-radius: 20px;;">
+              log in
+            </button>
+          </div>
+
+          <div class="popup-container">
+            <div id="pSignup" class="popup">
+              <h1>Sign up to the mono...</h1>
+              <p>...and start to share & spark.</p>
+              <form id="SIGNUPform" class="form-fieldset">
+                <div class="mb-3">
+                  <label class="form-label required">Display name</label>
+                  <input type="text" class="form-control" id="SIGNUPname" name="SIGNUPname" placeholder="Captain Anonymous" autocomplete="off"/>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label required">Username</label>
+                  <div class="input-group mb-2">
+                    <span class="input-group-text">
+                      @
+                    </span>
+                    <input type="text" class="form-control" id="SIGNUPusername" name="SIGNUPusername" placeholder="canonymous" autocomplete="off" />
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label required">E-mail</label>
+                  <input type="email" class="form-control" id="SIGNUPemail" name="SIGNUPemail" placeholder="mail@service.me" autocomplete="on"/>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label required">Password</label>
+                  <input type="password" class="form-control" id="SIGNUPpassword" name="SIGNUPpassword" placeholder="Make sure it is safe!" autocomplete="on"/>
+                </div>
+                <div class="mb-3">
+                  <input type="submit" value="Get Started!" name="SIGNUPsubmit" id="SIGNUPsubmit" class="btn btn-dark" style="width: 100%;">
+                </div>
+              </form>       
+              
+              <div class="ribbon ribbon-top ribbon-bookmark ribbon-end">
+                <i class="ti ti-user-plus"></i>
+              </div>
+            </div>
+
+            <button onclick="triggerPopup('pSignup')" class="btn btn-outline-dark pSignup" style="border-radius:0;border-top-right-radius: 20px;border-bottom-right-radius: 20px;;">
+              sign up
+            </button>
+          </div>
         </div>
       </div>
     </div>
 </div>
+
+<style>
+  .darker {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgb(0 0 0 / 25%);
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.2s all;
+  }
+
+  .darker.active {
+    opacity: 1;
+    pointer-events: auto;
+    transition: 0.2s all;
+  }
+
+  .popup-container {
+    position: relative !important;
+  }
+
+  .popup {
+    position: absolute;
+    border-radius: 15px;
+    border: 1px solid #ddd;
+    background: #fff;
+    padding: 10px 20px;
+    top: 0;
+    z-index: 99999;
+    right: calc(100% + 7px);
+    width: 330px;
+    max-height: 600px;
+    box-shadow: 0 0 16px 0 rgb(0 0 0 / 15%);
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.2s all;
+  }
+
+  .popup::before {
+    content: '';
+    background: #fff;
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    top: 15px;
+    right: -5px;
+    transform: rotateZ(45deg);
+    z-index: 2;
+    box-shadow: 0 0 16px 0 rgb(0 0 0 / 15%);
+  }
+
+  .popup.active {
+    opacity: 1;
+    pointer-events: all;
+    transition: 0.2s all;
+    width: 330px;
+  }
+
+  button {
+    z-index: 0 !important;
+  }
+
+  body:has(.pLogin.btn-dark) .pSignup {
+    pointer-events: none;
+  }
+
+  body:has(.pSignup.btn-dark) .pLogin {
+    pointer-events: none;
+  }
+
+  .ribbon i {
+    font-size: 1.03rem;
+  }
+</style>
+
+<script type="text/javascript">
+  function triggerPopup(pId) {
+    document.getElementById(pId).classList.toggle('active');
+    document.querySelector("." + pId).classList.toggle('btn-outline-dark');
+    document.querySelector("." + pId).classList.toggle('btn-dark');
+    document.querySelector('.darker').classList.toggle('active');
+  }
+</script>

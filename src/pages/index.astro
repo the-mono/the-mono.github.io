@@ -8,23 +8,22 @@ import PageHeader from '../components/PageHeader.astro';
 	<Sidebar homeActive="active"/>
 	<div class="page-wrapper" style="font-size:1.1rem">
 		<PageHeader title="Homepage"/>
-		<div class="page-body" style="padding: 1rem 3rem">
+		<div class="page-body" style="padding: 1rem 3rem;">
 			<div class="row align-items-center">
-				<div class="col-7">
+				<div class="col-10">
 					<h1 style="font-size:2rem">Share & Spark!</h1>
 					<h3 style="font-weight:400">The Mono is an everything platform for posting a piece of text, video, picture and more..</h3>
 				</div>
 				<div class="col">
 					<div class="row align-items-center">
-						<i class="col-4">Post something: </i>
 						<div class="col btn-list">
-							<button class="btn btn-primary btn-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Text">
+							<button class="btn btn-dark btn-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Text">
 								<i class="ti ti-pencil"></i>
 							</button>
-							<button class="btn btn-success btn-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Media">
+							<button class="btn btn-dark btn-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Media">
 								<i class="ti ti-camera"></i>
 							</button>
-							<button class="btn btn-danger btn-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Link">
+							<button class="btn btn-dark btn-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Link">
 								<i class="ti ti-link"></i>
 							</button>
 						</div>
@@ -35,3 +34,11 @@ import PageHeader from '../components/PageHeader.astro';
 		</div>
 	</div>	  
 </Layout>
+
+<style>
+	@media (max-width: 577px) {
+		.page-wrapper {
+			padding-top: 60px;
+		}
+	}
+</style>
